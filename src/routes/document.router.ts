@@ -11,6 +11,9 @@ export default class DocumentRouter {
 
   private initRoutes () {
     this.router.post('/create-document', (req, res) => this.documentController.sendEmail(req, res))
+    this.router.get('/', (req, res) => {
+      res.send('hola')
+    })
   }
 
   public getRouter () {
