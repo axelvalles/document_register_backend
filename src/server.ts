@@ -7,7 +7,7 @@ import DocumentRouter from './routes/document.router'
 class Server {
   private app: express.Application = express()
   private port: string = process.env.PORT || '8000'
-  private userRouter = new DocumentRouter()
+  private documentRouter = new DocumentRouter()
 
   constructor () {
     this.settings()
@@ -25,7 +25,7 @@ class Server {
   //   }
 
   private routes () {
-    this.app.use('/api', this.userRouter.getRouter())
+    this.app.use('/api', this.documentRouter.getRouter())
   }
 
   private settings () {
