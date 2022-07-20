@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import DocumentController from '../controllers/document.controller'
+import formidableMiddleware from '../middlewares/formidable.middlewares'
 
 export default class DocumentRouter {
   private router = Router()
@@ -10,13 +11,9 @@ export default class DocumentRouter {
   }
 
   private initRoutes () {
-    this.router.post('/create-document', (req, res) => this.documentController.sendEmail(req, res))
-    this.router.get('/', (req, res) => {
-      res.json({
-        ok: true,
-        msg: 'test'
-      })
-    })
+    this.router.post('/title', formidableMiddleware, (req, res) => this.documentController.titleRequest(req, res))
+    this.router.post('/insurance', formidableMiddleware, (req, res) => this.documentController.insuranceRequest(req, res))
+    this.router.post('/temporary-permit', formidableMiddleware, (req, res) => this.documentController.temporaryPermitRequest(req, res))
   }
 
   public getRouter () {

@@ -1,27 +1,28 @@
+import { File as FormidableFile } from 'formidable'
 export interface CustomerDto {
     address: string
     email: string
-    full_name: string
+    fullName: string
     phone: number
-    post_code: number
+    postCode: number
 }
 
 export interface TitleDto extends CustomerDto {
-    body_style: string
+    bodyStyle: string
     color: string
-    fuel_type: string
+    fuelType: string
     isNew: string
     make: string
     model: string
-    prev_title_img: string
+    prevTitleImg: FormidableFile
     vin: string
     year: string
 }
 
 export interface InsuranceDto extends CustomerDto {
-    body_style: string
+    bodyStyle: string
     color: string
-    prev_insurance_img: string
+    prevInsuranceImg: FormidableFile
     type: string
     vin: string
 }

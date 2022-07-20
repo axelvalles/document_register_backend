@@ -34,8 +34,12 @@ class Server {
 
   private middlewares () {
     this.app.use(express.json())
+    this.app.use(express.urlencoded({ extended: true }))
     this.app.use(helmet())
-    this.app.use(cors())
+    this.app.use(cors({
+      methods: ['POST']
+
+    }))
   }
 
   public async listen () {
