@@ -29,7 +29,6 @@ export interface InsuranceDto extends CustomerDto {
 
 export interface TemporaryPermitDto extends CustomerDto {
     color: string
-    make: string
     model: string
     vin: string
     year: string

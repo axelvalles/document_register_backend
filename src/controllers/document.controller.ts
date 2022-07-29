@@ -14,7 +14,7 @@ export default class DocumentController {
       const { email, fullName, phone, prevTitleImg } = req.body
 
       const customerEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de título', // Subject line
         html: this.templeteService.generateTemplate(
@@ -25,7 +25,7 @@ export default class DocumentController {
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: process.env.ADMIN_EMAIL, // list of receivers
         subject: 'Nueva Petición de título', // Subject line
         attachments: [
@@ -62,7 +62,7 @@ export default class DocumentController {
       const { email, fullName, phone, prevInsuranceImg } = req.body
 
       const customerEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de seguro', // Subject line
         html: this.templeteService.generateTemplate(
@@ -73,7 +73,7 @@ export default class DocumentController {
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: process.env.ADMIN_EMAIL, // list of receivers
         subject: 'Nueva Petición de seguro', // Subject line
         attachments: [
@@ -110,7 +110,7 @@ export default class DocumentController {
       const { email, fullName, phone } = req.body
 
       const customerEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de permiso temporal', // Subject line
         html: this.templeteService.generateTemplate(
@@ -121,7 +121,7 @@ export default class DocumentController {
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
-        from: `"SafeEngine Team" <${this.mailerService.getEmailAcount}>`, // sender address
+        from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: process.env.ADMIN_EMAIL, // list of receivers
         subject: 'Nueva Petición de permiso temporal', // Subject line
 
