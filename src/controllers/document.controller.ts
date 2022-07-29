@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import fs from 'fs'
 import { Request, Response } from 'express'
 import { InsuranceDto, TemporaryPermitDto, TitleDto } from '../config/interfaces/document.interface'
@@ -12,16 +11,13 @@ export default class DocumentController {
   public async titleRequest (req: Request<{}, {}, TitleDto>, res: Response): Promise<Response> {
     try {
       const { email, fullName, phone, prevTitleImg } = req.body
+      const type = 'Titulo'
 
       const customerEmailInfo = await this.mailerService.sendEmail({
         from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de título', // Subject line
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'customer-email',
-            context: { fullName, phone, type: 'título' }
-          })
+        html: this.templeteService.templateCustomer({ fullName, phone, type })
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
@@ -35,11 +31,7 @@ export default class DocumentController {
 
           }
         ],
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'admin-email-title',
-            context: { ...req.body, date: dayjs(new Date()).format('DD/MM/YYYY-hh:mm') }
-          })
+        html: this.templeteService.templateTitle(req.body)
       })
 
       return res.status(200).json({
@@ -60,16 +52,13 @@ export default class DocumentController {
   public async insuranceRequest (req: Request<{}, {}, InsuranceDto>, res: Response): Promise<Response> {
     try {
       const { email, fullName, phone, prevInsuranceImg } = req.body
+      const type = 'Seguro'
 
       const customerEmailInfo = await this.mailerService.sendEmail({
         from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de seguro', // Subject line
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'customer-email',
-            context: { fullName, phone, type: 'seguro' }
-          })
+        html: this.templeteService.templateCustomer({ fullName, phone, type })
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
@@ -83,11 +72,7 @@ export default class DocumentController {
 
           }
         ],
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'admin-email-insurance',
-            context: { ...req.body, date: dayjs(new Date()).format('DD/MM/YYYY-hh:mm') }
-          })
+        html: this.templeteService.templateInsurance(req.body)
       })
 
       return res.status(200).json({
@@ -108,28 +93,20 @@ export default class DocumentController {
   public async temporaryPermitRequest (req: Request<{}, {}, TemporaryPermitDto>, res: Response): Promise<Response> {
     try {
       const { email, fullName, phone } = req.body
+      const type = 'Permiso temporal'
 
       const customerEmailInfo = await this.mailerService.sendEmail({
         from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: email, // list of receivers
         subject: 'Petición de permiso temporal', // Subject line
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'customer-email',
-            context: { fullName, phone, type: 'permiso temporal' }
-          })
+        html: this.templeteService.templateCustomer({ fullName, phone, type })
       })
 
       const adminEmailInfo = await this.mailerService.sendEmail({
         from: `"Temporary Engine Team" <${this.mailerService.getEmailAcount}>`, // sender address
         to: process.env.ADMIN_EMAIL, // list of receivers
         subject: 'Nueva Petición de permiso temporal', // Subject line
-
-        html: this.templeteService.generateTemplate(
-          {
-            template: 'admin-email-temporary-permit',
-            context: { ...req.body, date: dayjs(new Date()).format('DD/MM/YYYY-hh:mm') }
-          })
+        html: this.templeteService.templateTemporaryPermit(req.body)
       })
 
       return res.status(200).json({

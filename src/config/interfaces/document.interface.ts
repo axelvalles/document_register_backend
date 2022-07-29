@@ -4,7 +4,7 @@ export interface CustomerDto {
     email: string
     fullName: string
     phone: number
-    postCode: number
+    postCode: string
 }
 
 export interface TitleDto extends CustomerDto {
@@ -12,7 +12,6 @@ export interface TitleDto extends CustomerDto {
     color: string
     fuelType: string
     isNew: string
-    make: string
     model: string
     prevTitleImg: FormidableFile
     vin: string
