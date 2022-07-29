@@ -65,8 +65,8 @@ export default class TemplateService {
     <i> ${data.phone}</i> para poder continuar con el procedimiento de tu documento
 </p>
 <hr />
-<p>Para mas Informacion o contacto puedes escribirnos via Whatsapp : +1 (512) 952-6557</p>
-<p>O enviar un correo electronico a: enmalviarez17@gmail.com</p>
+<p>Para mas Informacion o contacto puedes escribirnos via Whatsapp : ${process.env.ADMIN_PHONE}</p>
+<p>O enviar un correo electronico a: ${process.env.ADMIN_EMAIL}</p>
 <strong> Nos alegrara el poder ayudarte !! </strong>
 </div>`
   }
