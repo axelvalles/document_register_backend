@@ -22,8 +22,8 @@ export interface InsuranceDto extends CustomerDto {
     bodyStyle: string
     color: string
     prevInsuranceImg: FormidableFile
-    type: string
     vin: string
+    model: string
 }
 
 export interface TemporaryPermitDto extends CustomerDto {

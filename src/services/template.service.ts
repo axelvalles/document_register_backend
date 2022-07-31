@@ -48,7 +48,6 @@ export default class TemplateService {
     <li>bodyStyle:  ${data.bodyStyle}</li>
     <li>color:  ${data.color}</li>
     <li>vin:  ${data.vin}</li>
-    <li>type:  ${data.type}</li>
 </ul>
 </div>
 `

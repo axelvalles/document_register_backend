@@ -11,15 +11,14 @@ const titleSchema = z.object({
   email: z.string().trim().email(),
   fuelType: z.string().trim().min(1),
   fullName: z.string().trim().min(1),
-  isNew: z.boolean(),
+  isNew: z.string().trim().min(1),
   model: z.string().trim().min(1),
   phone: z.string().trim().min(1),
   postCode: z.string().trim().min(1),
   prevTitleImg: z.any()
-    .refine((files) => files?.length === 1, 'Image is required.')
-    .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, 'Max file size is 5MB.')
+    .refine((file) => file?.size <= MAX_FILE_SIZE, 'Max file size is 5MB.')
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.mimetype),
       '.jpg, .jpeg, .png and .webp files are accepted.'
     ),
   vin: z.string().trim().min(1),
@@ -35,14 +34,13 @@ const insuranceSchema = z.object({
   phone: z.string().trim().min(1),
   postCode: z.string().trim().min(1),
   prevInsuranceImg: z.any()
-    .refine((files) => files?.length === 1, 'Image is required.')
-    .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, 'Max file size is 5MB.')
+    .refine((file) => file?.size <= MAX_FILE_SIZE, 'Max file size is 5MB.')
     .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.mimetype),
       '.jpg, .jpeg, .png and .webp files are accepted.'
     ),
-  type: z.string().trim().min(1),
-  vin: z.string().trim().min(1)
+  vin: z.string().trim().min(1),
+  model: z.string().trim().min(1)
 })
 
 const temporaryPermitSchema = z.object({
