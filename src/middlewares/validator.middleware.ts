@@ -34,6 +34,7 @@ const insuranceSchema = z.object({
   phone: z.string().trim().min(1),
   postCode: z.string().trim().min(1),
   prevInsuranceImg: z.any()
+
     .refine((file) => file?.size <= MAX_FILE_SIZE, 'Max file size is 5MB.')
     .refine(
       (file) => ACCEPTED_IMAGE_TYPES.includes(file?.mimetype),
